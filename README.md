@@ -1,5 +1,12 @@
 NHibernate.Caches.Redis
 =======================
+#update log 修改日志
+- 
+
+=======================
+
+
+
 
 This is a [Redis](http://redis.io/) based [ICacheProvider](http://www.nhforge.org/doc/nh/en/#configuration-optional-cacheprovider) 
 for [NHibernate](http://nhforge.org/) written in C# using [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis).
