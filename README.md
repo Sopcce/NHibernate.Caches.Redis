@@ -1,6 +1,7 @@
 NHibernate.Caches.Redis
 =======================
-#update log 修改日志
+#update log 修改日志 一个小菜鸟，有问题处理不了。
+- add Nhibern chacged ICache interface adding async methods Nhibernate.Caches.Redis fails with it.
 - 
 
 =======================
