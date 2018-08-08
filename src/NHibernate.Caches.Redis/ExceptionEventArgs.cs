@@ -19,5 +19,7 @@ namespace NHibernate.Caches.Redis
             this.Method = method;
             this.Throw = false;
         }
-    }
+
+   
+  }
 }

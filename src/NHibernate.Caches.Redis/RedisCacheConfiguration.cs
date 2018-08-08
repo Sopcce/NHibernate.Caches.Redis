@@ -14,7 +14,7 @@ namespace NHibernate.Caches.Redis
         public static readonly TimeSpan DefaultAcquireLockTimeout = DefaultLockTimeout;
         public static readonly TimeSpan NoSlidingExpiration = TimeSpan.Zero;
 
-        public string RegionName { get; private set; }
+        public string RegionName { get; set; }
 
         /// <summary>
         /// Gets or sets the duration that the item remains in the cache.

@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace NHibernate.Caches.Redis
 {
-    public class NetDataContractCacheSerializer : XmlRedisCacheSerializerBase
+  /// <summary>
+  /// 
+  /// </summary>
+  public class NetDataContractCacheSerializer : XmlRedisCacheSerializerBase
+  {
+    protected override XmlObjectSerializer CreateSerializer()
     {
-        protected override XmlObjectSerializer CreateSerializer()
-        {
-            var serializer = new NetDataContractSerializer();
-            return serializer;
-        }
+      var serializer = new NetDataContractSerializer();
+      return serializer;
     }
+
+  }
 }

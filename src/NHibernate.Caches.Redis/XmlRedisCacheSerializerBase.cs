@@ -6,10 +6,7 @@ namespace NHibernate.Caches.Redis
 {
     public abstract class XmlRedisCacheSerializerBase : ICacheSerializer
     {
-        public XmlRedisCacheSerializerBase()
-        {
-
-        }
+    
 
         public RedisValue Serialize(object value)
         {
