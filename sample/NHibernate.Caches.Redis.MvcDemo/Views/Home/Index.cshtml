@@ -1,0 +1,65 @@
+﻿
+
+@using System
+@model System.Collections.Generic.IEnumerable<Demo.Models.BlogPost>
+@{
+    ViewBag.Title = "Index";
+    var stats = Demo.MvcApplication.SessionFactory.Statistics;
+}
+
+<style type="text/css">
+
+    .stats td:first-child {
+        font-weight: bold;
+        padding-right: 20px;
+    }
+</style>
+
+<h2>
+    Index
+    <br /> @Html.Raw(ViewBag.Name)
+</h2>
+
+@using (Html.BeginForm("create", "home"))
+{
+    <input type="text" style="width: 800px" name="title" placeholder="Title" value="@DateTime.Now.ToString("T")" />
+    <br />
+
+    <input type="text" style="width: 800px" name="body" placeholder="body" value="@DateTime.Now.ToString("yy-MMM-dd-ddd-HH-MM-ss-ffff")" /><br />
+    <br />
+    <button type="submit">Create Post</button>
+}
+
+<br /><br /><hr />
+<a href="Home/set">Test</a>
+
+<br /><br />
+
+<h2>Stats</h2>
+<table class="stats">
+    <tr><td>Region Names</td><td>@String.Join(", ", stats.SecondLevelCacheRegionNames)</td></tr>
+    <tr><td>QueryCacheHitCount</td><td>@stats.QueryCacheHitCount</td></tr>
+    <tr><td>QueryCacheMissCount</td><td>@stats.QueryCacheMissCount</td></tr>
+    <tr><td>QueryCachePutCount</td><td>@stats.QueryCachePutCount</td></tr>
+    <tr><td>SecondLevelCacheHitCount</td><td>@stats.SecondLevelCacheHitCount</td></tr>
+    <tr><td>SecondLevelCacheMissCount</td><td>@stats.SecondLevelCacheMissCount</td></tr>
+    <tr><td>SecondLevelCachePutCount</td><td>@stats.SecondLevelCachePutCount</td></tr>
+</table>
+
+<h2>Posts</h2>
+
+<table style="width: 500px;">
+    <thead><tr><th>Title</th><th>Body</th><th>Created</th></tr></thead>
+
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Body</td>
+                <td>@post.Created.ToString()</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
