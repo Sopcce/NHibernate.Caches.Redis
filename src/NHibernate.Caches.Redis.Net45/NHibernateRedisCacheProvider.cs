@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using NHibernate.Caches.Redis;
-using System.Web;
 using System.Runtime.Remoting.Messaging;
-using NHibernate.Caches.Redis.Net45;
+using System.Web;
 using StackExchange.Redis;
 
-namespace NHibernate.Caches.Redis
+namespace NHibernate.Caches.Redis.Net45
 {
     public class NHibernateRedisCacheProvider : RedisCacheProvider
     {

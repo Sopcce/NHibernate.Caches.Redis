@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net45", "Net45", "{157D2E03
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Cache.DynamicCacheBuster", "src\NHibernate.Cache.DynamicCacheBuster\NHibernate.Cache.DynamicCacheBuster.csproj", "{32F38F68-5622-4984-9B13-D7C1A1FA2222}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Caches.Redis.MvcDemo.MySQL", "sample\NHibernate.Caches.Redis.MvcDemo.MySQL\NHibernate.Caches.Redis.MvcDemo.MySQL.csproj", "{9FD7BF7D-8A5A-4A84-9482-45D0FEAAE87F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.MySQL", "sample\NHibernate.Caches.Redis.MvcDemo.MySQL\Demo.MySQL.csproj", "{9FD7BF7D-8A5A-4A84-9482-45D0FEAAE87F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Caches.Redis.MvcDemo", "sample\NHibernate.Caches.Redis.MvcDemo\NHibernate.Caches.Redis.MvcDemo.csproj", "{104FF9C0-F937-44DC-8218-D1B0A689FA2B}"
 EndProject

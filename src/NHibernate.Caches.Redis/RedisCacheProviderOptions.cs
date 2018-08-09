@@ -19,7 +19,7 @@ namespace NHibernate.Caches.Redis
     /// <summary>
     /// 
     /// </summary>
-    public bool SerializerType { get; set; } = true;
+    public SerializerType SerializerType { get; set; } = SerializerType.XML;
 
     /// <summary>
     /// An event raised when exceptions occur during cache operations.
@@ -73,14 +73,16 @@ namespace NHibernate.Caches.Redis
     public RedisCacheProviderOptions()
     {
       //TODO ADD
-      if (SerializerType)
+      switch (SerializerType)
       {
-        Serializer = new NetDataContractCacheSerializer();
+        case SerializerType.XML:
+          Serializer = new NetDataContractCacheSerializer();
+          break;
+        case SerializerType.JSON:
+          Serializer = new NhJsonCacheSerializer();
+          break;
       }
-      else
-      {
-        Serializer = new NhJsonCacheSerializer();
-      }
+
 
       AcquireLockRetryStrategy = new ExponentialBackoffWithJitterAcquireLockRetryStrategy();
       LockValueFactory = new GuidLockValueFactory();
@@ -174,5 +176,11 @@ namespace NHibernate.Caches.Redis
         onLockFailed(sender, e);
       }
     }
+  }
+
+  public enum SerializerType
+  {
+    XML = 0,
+    JSON = 1
   }
 }
