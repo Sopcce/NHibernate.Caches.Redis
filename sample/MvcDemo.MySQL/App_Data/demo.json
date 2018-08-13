@@ -1,0 +1,42 @@
+﻿{
+  "$type": "NHibernate.Cache.CachedItem, NHibernate",
+  "freshTimestamp": {
+    "$type": "System.Int64",
+    "$value": 6283385656528896
+  },
+  "value": {
+    "$type": "NHibernate.Cache.Entry.CacheEntry, NHibernate",
+    "disassembledState": {
+      "$type": "System.Object[], mscorlib",
+      "$values": [
+        {
+          "$type": "System.Int32",
+          "$value": 116
+        },
+        true,
+        {
+          "$type": "System.Int32",
+          "$value": 27
+        },
+        {
+          "$type": "System.Int64",
+          "$value": 163800
+        },
+        {
+          "$type": "System.Single",
+          "$value": 163800.0
+        },
+        {
+          "$type": "System.Decimal",
+          "$value": 163800.0
+        },
+        "2018/8/11 22:49:290b6a3277-fdc6-42bb-a45c-e615a3a4cef3-27",
+        "2018-08-11T22:49:30"
+      ]
+    },
+    "subclass": "MvcDemo.MySQL.Models.TestInfo",
+    "lazyPropertiesAreUnfetched": true,
+    "version": null
+  },
+  "version": null
+}

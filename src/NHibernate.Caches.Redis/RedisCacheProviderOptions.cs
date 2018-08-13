@@ -19,19 +19,17 @@ namespace NHibernate.Caches.Redis
     /// <summary>
     /// 
     /// </summary>
-    public SerializerType SerializerType { get; set; } = SerializerType.XML;
+    public SerializerType SerializerType { get; set; }
 
     /// <summary>
-    /// An event raised when exceptions occur during cache operations.
-    /// If an event handler is not added, by default exceptions are
-    /// thrown.
-    /// This must be thread-safe.
+    /// An event raised when exceptions occur during cache operations.If an event handler is not added, by default exceptions are thrown.This must be thread-safe.
+    /// 在缓存操作期间发生异常时引发的事件。如果未添加事件处理程序，则默认情况下抛出异常。这必须是线程安全的。 
     /// </summary>
     public event RedisCacheEventHandler<ExceptionEventArgs> Exception;
 
     /// <summary>
-    /// Get or set the strategy used when determining whether or not to retry
-    /// acquiring a lock.
+    /// Get or set the strategy used when determining whether or not to retry acquiring a lock.
+    /// 获取或设置在确定是否重试获取锁时使用的策略。
     /// </summary>
     public IAcquireLockRetryStrategy AcquireLockRetryStrategy { get; set; }
 
@@ -50,6 +48,7 @@ namespace NHibernate.Caches.Redis
 
     /// <summary>
     /// Get or set a factory used for creating the value of the locks.
+    /// 获取或设置用于创建锁的值的工厂。
     /// </summary>
     public ILockValueFactory LockValueFactory { get; set; }
 
@@ -60,6 +59,7 @@ namespace NHibernate.Caches.Redis
 
     /// <summary>
     /// Get or set the configuration for each region's cache.
+    /// 获取或设置每个区域的缓存的配置。
     /// </summary>
     public IEnumerable<RedisCacheConfiguration> CacheConfigurations { get; set; }
 
@@ -71,9 +71,19 @@ namespace NHibernate.Caches.Redis
     public string KeyPrefix { get; set; }
 
     public RedisCacheProviderOptions()
+    { 
+      Serializer = new NetDataContractCacheSerializer();
+      AcquireLockRetryStrategy = new ExponentialBackoffWithJitterAcquireLockRetryStrategy();
+      LockValueFactory = new GuidLockValueFactory();
+      Database = 0;
+      CacheConfigurations = Enumerable.Empty<RedisCacheConfiguration>();
+      KeyPrefix = "NHibernate-Cache:";
+    }
+
+    public RedisCacheProviderOptions(SerializerType serializer)
     {
       //TODO ADD
-      switch (SerializerType)
+      switch (serializer)
       {
         case SerializerType.XML:
           Serializer = new NetDataContractCacheSerializer();
@@ -81,9 +91,7 @@ namespace NHibernate.Caches.Redis
         case SerializerType.JSON:
           Serializer = new NhJsonCacheSerializer();
           break;
-      }
-
-
+      } 
       AcquireLockRetryStrategy = new ExponentialBackoffWithJitterAcquireLockRetryStrategy();
       LockValueFactory = new GuidLockValueFactory();
       Database = 0;

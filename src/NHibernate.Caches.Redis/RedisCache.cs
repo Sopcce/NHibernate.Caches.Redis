@@ -100,6 +100,7 @@ end
     {
       var db = GetDatabase();
 
+
       // Don't use IDatabase.LockTake() because we don't use the matching
       // LockRelease(). So, avoid any confusion. Besides, LockTake() just
       // calls this anyways.
@@ -116,7 +117,11 @@ end
     }
     private IDatabase GetDatabase()
     {
+      var dd = _connectionMultiplexer.IsConnected;
+
+
       return _connectionMultiplexer.GetDatabase(_options.Database);
+
     }
 
 
@@ -168,13 +173,16 @@ end
         RegionName, _expiration, _lockTimeout, _acquireLockTimeout
       );
 
+      options.KeyPrefix = options.KeyPrefix.LastIndexOf(":", StringComparison.Ordinal) > -1
+        ? options.KeyPrefix
+        : options.KeyPrefix + ":";
 
       CacheNamespace = new RedisNamespace(options.KeyPrefix + RegionName);
     }
 
     public long NextTimestamp()
     {
-     
+
       return Timestamper.Next();
     }
 
@@ -192,7 +200,7 @@ end
         var cacheKey = CacheNamespace.GetKey(key);
         var setOfActiveKeysKey = CacheNamespace.GetSetOfActiveKeysKey();
         var db = GetDatabase();
-
+        //TODO 临时不处理，这里缓存了实体
         db.ScriptEvaluate(PutScript, new
         {
           key = cacheKey,

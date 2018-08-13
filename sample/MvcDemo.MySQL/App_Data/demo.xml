@@ -1,0 +1,19 @@
+﻿<CachedItem z:Id="1" z:Type="NHibernate.Cache.CachedItem" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/">
+  <freshTimestamp>6283373700837376</freshTimestamp>
+  <value z:Id="2" z:Type="NHibernate.Cache.Entry.CacheEntry">
+    <disassembledState z:Id="3" z:Size="8" xmlns="http://schemas.datacontract.org/2004/07/NHibernate.Cache.Entry" xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <a:anyType z:Id="4" z:Type="System.Int32" z:Assembly="0">40</a:anyType>
+      <a:anyType z:Id="5" z:Type="System.Boolean" z:Assembly="0">true</a:anyType>
+      <a:anyType z:Id="6" z:Type="System.Int32" z:Assembly="0">0</a:anyType>
+      <a:anyType z:Id="7" z:Type="System.Int64" z:Assembly="0">0</a:anyType>
+      <a:anyType z:Id="8" z:Type="System.Single" z:Assembly="0">0</a:anyType>
+      <a:anyType z:Id="9" z:Type="System.Decimal" z:Assembly="0">0</a:anyType>
+      <a:anyType z:Id="10" z:Type="System.String" z:Assembly="0">2018/8/9 16:25:360495b287-38ac-4cef-8b15-651d199f6a95-0</a:anyType>
+      <a:anyType z:Id="11" z:Type="System.DateTime" z:Assembly="0">2018-08-09T16:25:36</a:anyType>
+    </disassembledState>
+    <lazyPropertiesAreUnfetched xmlns="http://schemas.datacontract.org/2004/07/NHibernate.Cache.Entry">true</lazyPropertiesAreUnfetched>
+    <subclass z:Id="12" xmlns="http://schemas.datacontract.org/2004/07/NHibernate.Cache.Entry">MvcDemo.MySQL.Models.TestInfo</subclass>
+    <version i:nil="true" xmlns="http://schemas.datacontract.org/2004/07/NHibernate.Cache.Entry"/>
+  </value>
+  <version i:nil="true"/>
+</CachedItem>

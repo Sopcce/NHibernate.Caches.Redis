@@ -146,6 +146,9 @@ namespace NHibernate.Caches.Redis
     public NhJsonCacheSerializer()
     {
       this.settings = new JsonSerializerSettings();
+      //这一行就是设置Json.NET能够序列化接口或继承类的关键，
+      //将TypeNameHandling设置为All后，Json.NET会在序列化后的json文本中附加一个属性说明json到底是从什么类序列化过来的，也可以设置TypeNameHandling为Auto，表示让Json.NET自动判断是否需要在序列化后的json中添加类型属性，如果序列化的对象类型和声明类型不一样的话Json.NET就会在json中添加类型属性，反之就不添加，
+      //但是我发现TypeNameHandling.Auto有时候不太好用。。。
       settings.TypeNameHandling = TypeNameHandling.All;
       settings.Converters.Add(new KeepNumberTypesConverter());
       settings.ContractResolver = new CustomContractResolver();

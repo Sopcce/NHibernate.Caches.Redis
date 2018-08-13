@@ -41,6 +41,9 @@ namespace NHibernate.Caches.Redis.Sample
       RegisterRoutes(RouteTable.Routes);
 
       var connectionMultiplexer = ConnectionMultiplexer.Connect("localhost:6379,allowAdmin=true");
+
+
+
       connectionMultiplexer.GetServer("localhost", 6379).FlushAllDatabases();
 
       RedisCacheProvider.SetConnectionMultiplexer(connectionMultiplexer);
