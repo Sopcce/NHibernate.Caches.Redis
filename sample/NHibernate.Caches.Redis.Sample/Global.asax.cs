@@ -1,14 +1,12 @@
-﻿using System.Web;
+﻿using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
+using NHibernate.Caches.Redis.Sample.Mapping;
+using NHibernate.Tool.hbm2ddl;
+using StackExchange.Redis;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.IO;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using NHibernate.Tool.hbm2ddl;
-using NHibernate.Caches.Redis.Sample.Mapping;
-using StackExchange.Redis;
-using System;
-using NHibernate.Caches.Redis.Net45;
 
 namespace NHibernate.Caches.Redis.Sample
 {

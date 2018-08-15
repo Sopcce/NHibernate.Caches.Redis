@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MvcDemo.MySQL.Database;
+using MvcDemo.MySQL.Repositories;
 
 namespace MvcDemo.MySQL.Models
 {
@@ -18,6 +19,7 @@ namespace MvcDemo.MySQL.Models
 
     public void Delete(long id)
     {
+      _repository.Dao.CreateSQLQuery()
       _repository.Delete(log => log.Id == id);
     }
 
@@ -29,24 +31,10 @@ namespace MvcDemo.MySQL.Models
     {
       return _repository.Table.ToList();
     }
-
-    /// <summary>
-    /// 获取拥有者的操作日志
-    /// </summary>
-    /// <param name="Id"></param>
-    /// <param name="pageSize">分页大小</param>
-    /// <param name="pageIndex">页码</param>
-    /// <returns></returns>
-    public PagingDataSet<TestInfo> Gets(int pageSize, int pageIndex)
+    public List<TestInfo> Gets()
     {
-      var data = _repository.Table;
-
-      return new PagingDataSet<TestInfo>(data.Skip(pageSize * (pageIndex - 1)).Take(pageSize))
-      {
-        PageSize = pageSize,
-        PageIndex = pageIndex,
-        TotalRecords = data.LongCount()
-      };
+      return _repository.Gets(n => n.Id < 2000 && n.Id > 700 && n.LongValue > 20, order => order.Asc(n => n.LongValue, n => n.Id), 20, 1);
     }
+
   }
 }

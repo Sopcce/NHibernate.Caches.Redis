@@ -25,13 +25,15 @@ namespace MvcDemo.MySQL.Database
             get { return _queryable; }
         }
 
-        /// <summary>
-        ///  升序排序
-        /// </summary>
-        /// <typeparam name="TKey">排序字段</typeparam>
-        /// <param name="keySelector">返回TKey的委托</param>
-        /// <returns> Orderable</returns>
-        public Orderable<T> Asc<TKey>(Expression<Func<T, TKey>> keySelector)
+ 
+
+    /// <summary>
+    ///  升序排序
+    /// </summary>
+    /// <typeparam name="TKey">排序字段</typeparam>
+    /// <param name="keySelector">返回TKey的委托</param>
+    /// <returns> Orderable</returns>
+    public Orderable<T> Asc<TKey>(Expression<Func<T, TKey>> keySelector)
         {
             _queryable = _queryable
                 .OrderBy(keySelector);

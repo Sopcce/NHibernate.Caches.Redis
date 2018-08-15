@@ -90,10 +90,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NHibernate.Caches.Redis.Net45\NHibernate.Caches.Redis.Net45.csproj">
-      <Project>{dc35e1fc-edb0-40bf-adac-c5b0e9cfb5a4}</Project>
-      <Name>NHibernate.Caches.Redis.Net45</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\NHibernate.Caches.Redis\NHibernate.Caches.Redis.csproj">
       <Project>{1B50164C-DB00-4109-A0D4-E2868ABFEDAF}</Project>
       <Name>NHibernate.Caches.Redis</Name>

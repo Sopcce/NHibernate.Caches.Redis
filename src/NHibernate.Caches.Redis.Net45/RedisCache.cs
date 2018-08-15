@@ -142,7 +142,7 @@ namespace NHibernate.Caches.Redis.Net45
                     var cacheKey = CacheNamespace.GetKey(key);
                     transaction.StringSetAsync(cacheKey, data, expiry, flags: CommandFlags.FireAndForget);
 
-                    //fix by jiangshl:原作者缓存了CacheKey的列表，是为了方便管理某个类型的NHibernate实体的所有缓存对象，对于我们无用且浪费缓存空间
+                     
                     //var setOfKeysKey = CacheNamespace.GetSetOfKeysKey();
                     //transaction.SetAddAsync(setOfKeysKey, cacheKey, flags: CommandFlags.FireAndForget);
                 });

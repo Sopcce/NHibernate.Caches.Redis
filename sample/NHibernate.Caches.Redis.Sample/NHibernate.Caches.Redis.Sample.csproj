@@ -163,12 +163,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\NHibernate.Caches.Redis.Net45\NHibernate.Caches.Redis.Net45.csproj">
-      <Project>{dc35e1fc-edb0-40bf-adac-c5b0e9cfb5a4}</Project>
-      <Name>NHibernate.Caches.Redis.Net45</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

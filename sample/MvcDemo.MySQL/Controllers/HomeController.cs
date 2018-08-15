@@ -25,7 +25,7 @@ namespace MvcDemo.MySQL.Controllers
       Stopwatch sw = new Stopwatch();
 
       sw.Start();
-      var posts = _TextService.Gets(20, 1).ToList();
+      var posts = _TextService.Gets();
       sw.Stop();
       var a1 = sw.ElapsedMilliseconds;
       sw.Restart();
@@ -38,7 +38,7 @@ namespace MvcDemo.MySQL.Controllers
 
     public ActionResult D()
     {
-      int id = 200;
+      int id = 500;
       for (int i = 0; i < id; i++)
       {
         _TextService.Create(new TestInfo()
@@ -54,7 +54,7 @@ namespace MvcDemo.MySQL.Controllers
           Type = new Random().Next(255)
         });
       }
-      return Content("CCC");
+      return Content(DateTime.Now.ToString("yyyyMMdd-ffff"));
     }
 
 

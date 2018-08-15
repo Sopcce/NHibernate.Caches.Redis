@@ -7,6 +7,8 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using MvcDemo.MySQL.Database;
 using MvcDemo.MySQL.Environment;
+using MvcDemo.MySQL.Repositories;
+using MvcDemo.MySQL.Repositories.NHibernate;
 using StackExchange.Redis;
 
 namespace MvcDemo.MySQL

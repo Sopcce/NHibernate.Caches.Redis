@@ -14,7 +14,7 @@ using StackExchange.Redis;
 
 //using Common.Logging;
 
-namespace MvcDemo.MySQL.Database
+namespace MvcDemo.MySQL.Repositories.NHibernate
 {
   /// <summary>
   /// Session和Transaction管理类，单例类。
@@ -26,7 +26,7 @@ namespace MvcDemo.MySQL.Database
     /// <summary>
     /// SessionFactory
     /// </summary>
-    private readonly ISessionFactory SessionFactory;
+    private readonly ISessionFactory _sessionFactory;
 
 
     /// <summary>
@@ -70,7 +70,6 @@ namespace MvcDemo.MySQL.Database
       var options = new RedisCacheProviderOptions()
       {
         Serializer = new NhJsonCacheSerializer(),
-        //SerializerType = SerializerType.JSON
         KeyPrefix = "Sopcce"
       };
       RedisCacheProvider.SetOptions(options);
@@ -80,7 +79,7 @@ namespace MvcDemo.MySQL.Database
       new CacheBuster().AppendVersionToCacheRegionNames(configure);
 
 
-      SessionFactory = configure.BuildSessionFactory();
+      _sessionFactory = configure.BuildSessionFactory();
     }
 
 
@@ -93,28 +92,29 @@ namespace MvcDemo.MySQL.Database
       {
         ISession session = null;
 
-        //如果当前的HttpContext为空，则从CallContext中获取当前的Session。
+        //如果当前的HttpContext为空，则从CallContext中获取当前的Session。 
         if (HttpContext.Current == null)
         {
           session = (ISession)CallContext.GetData(typeof(ISession).FullName);
 
           if (session == null || !session.IsOpen)
           {
-            session = SessionFactory.OpenSession(new DebugInterceptor());
+
+            session = _sessionFactory.OpenSession();
             CallContext.SetData(typeof(ISession).FullName, session);
           }
         }
         //从绑定的WebContext获取Session。
         else
         {
-          if (CurrentSessionContext.HasBind(SessionFactory))
+          if (CurrentSessionContext.HasBind(_sessionFactory))
           {
-            session = SessionFactory.GetCurrentSession();
+            session = _sessionFactory.GetCurrentSession();
           }
 
           if (session == null || !session.IsOpen)
           {
-            session = SessionFactory.OpenSession(new DebugInterceptor());
+            session = _sessionFactory.OpenSession();
             CurrentSessionContext.Bind(session);
           }
         }
@@ -132,11 +132,13 @@ namespace MvcDemo.MySQL.Database
 
       if (HttpContext.Current == null)
       {
-        session = (ISession)CallContext.GetData(typeof(ISession).FullName);
+        var fullName = typeof(ISession).FullName;
+        if (fullName != null)
+          session = (ISession)CallContext.GetData(fullName);
       }
       else
       {
-        session = CurrentSessionContext.Unbind(SessionFactory);
+        session = CurrentSessionContext.Unbind(_sessionFactory);
       }
 
       if (session == null || !session.IsOpen)
