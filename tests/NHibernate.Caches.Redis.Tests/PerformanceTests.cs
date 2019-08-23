@@ -4,13 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace NHibernate.Caches.Redis.Tests
 {
     public class PerformanceTests : IntegrationTestBase
     {
-        [Fact]
+        [Test]
         async Task concurrent_sessions_with_reads_and_writes()
         {
             DisableLogging();
@@ -45,7 +46,7 @@ namespace NHibernate.Caches.Redis.Tests
             Console.WriteLine("Took on average {0}ms per session", stopwatch.Elapsed.TotalMilliseconds / iterations);
         }
 
-        [Fact]
+        [Test]
         async Task concurrent_session_factories_with_reads_and_writes()
         {
             DisableLogging();

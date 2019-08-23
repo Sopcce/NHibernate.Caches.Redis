@@ -19,7 +19,7 @@ namespace MvcDemo.MySQL.Models
 
     public void Delete(long id)
     {
-      _repository.Dao.CreateSQLQuery()
+        _repository.Dao.CreateSQLQuery();
       _repository.Delete(log => log.Id == id);
     }
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IAcquireLockRetryStrategy
     {
         /// <summary>

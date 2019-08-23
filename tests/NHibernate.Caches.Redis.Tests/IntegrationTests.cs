@@ -1,12 +1,19 @@
 ﻿using System;
-using Xunit;
+using NUnit;
+using NUnit.Framework;
 
 namespace NHibernate.Caches.Redis.Tests
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class IntegrationTests : IntegrationTestBase
     {
-        [Fact]
-        void Entity_cache()
+        /// <summary>
+        /// 实体缓存
+        /// </summary>
+        [Test]
+        public void Entity_cache()
         {
             using (var sf = CreateSessionFactory())
             {
@@ -17,9 +24,9 @@ namespace NHibernate.Caches.Redis.Tests
                     personId = session.Save(new Person("Foo", 1));
 
                     // Put occurs on the next fetch from the DB.
-                    Assert.Equal(0, sf.Statistics.SecondLevelCacheHitCount);
-                    Assert.Equal(0, sf.Statistics.SecondLevelCacheMissCount);
-                    Assert.Equal(0, sf.Statistics.SecondLevelCachePutCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCacheHitCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCacheMissCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCachePutCount);
                 });
 
                 sf.Statistics.Clear();
@@ -27,8 +34,8 @@ namespace NHibernate.Caches.Redis.Tests
                 UsingSession(sf, session =>
                 {
                     session.Get<Person>(personId);
-                    Assert.Equal(1, sf.Statistics.SecondLevelCacheMissCount);
-                    Assert.Equal(1, sf.Statistics.SecondLevelCachePutCount);
+                    Assert.AreEqual(1, sf.Statistics.SecondLevelCacheMissCount);
+                    Assert.AreEqual(1, sf.Statistics.SecondLevelCachePutCount);
                 });
 
                 sf.Statistics.Clear();
@@ -36,14 +43,17 @@ namespace NHibernate.Caches.Redis.Tests
                 UsingSession(sf, session =>
                 {
                     session.Get<Person>(personId);
-                    Assert.Equal(1, sf.Statistics.SecondLevelCacheHitCount);
-                    Assert.Equal(0, sf.Statistics.SecondLevelCacheMissCount);
-                    Assert.Equal(0, sf.Statistics.SecondLevelCachePutCount);
+                    Assert.AreEqual(1, sf.Statistics.SecondLevelCacheHitCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCacheMissCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCachePutCount);
                 });
             }
         }
 
-        [Fact]
+        /// <summary>
+        /// 
+        /// </summary>
+        [Test]
         void SessionFactory_Dispose_should_not_clear_cache()
         {
             using (var sf = CreateSessionFactory())
@@ -59,9 +69,9 @@ namespace NHibernate.Caches.Redis.Tests
                         .Cacheable()
                         .List();
 
-                    Assert.Equal(1, sf.Statistics.QueryCacheMissCount);
-                    Assert.Equal(1, sf.Statistics.SecondLevelCachePutCount);
-                    Assert.Equal(1, sf.Statistics.QueryCachePutCount);
+                    Assert.AreEqual(1, sf.Statistics.QueryCacheMissCount);
+                    Assert.AreEqual(1, sf.Statistics.SecondLevelCachePutCount);
+                    Assert.AreEqual(1, sf.Statistics.QueryCachePutCount);
                 });
             }
 
@@ -73,10 +83,10 @@ namespace NHibernate.Caches.Redis.Tests
                         .Cacheable()
                         .List();
 
-                    Assert.Equal(1, sf.Statistics.SecondLevelCacheHitCount);
-                    Assert.Equal(1, sf.Statistics.QueryCacheHitCount);
-                    Assert.Equal(0, sf.Statistics.SecondLevelCachePutCount);
-                    Assert.Equal(0, sf.Statistics.QueryCachePutCount);
+                    Assert.AreEqual(1, sf.Statistics.SecondLevelCacheHitCount);
+                    Assert.AreEqual(1, sf.Statistics.QueryCacheHitCount);
+                    Assert.AreEqual(0, sf.Statistics.SecondLevelCachePutCount);
+                    Assert.AreEqual(0, sf.Statistics.QueryCachePutCount);
                 });
             }
         }

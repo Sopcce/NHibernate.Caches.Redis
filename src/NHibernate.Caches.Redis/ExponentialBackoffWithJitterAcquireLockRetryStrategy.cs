@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,27 @@ using System.Threading.Tasks;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ExponentialBackoffWithJitterAcquireLockRetryStrategy : IAcquireLockRetryStrategy
     {
-        private static readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof(ExponentialBackoffWithJitterAcquireLockRetryStrategy));
+     
+        private static readonly INHibernateLogger Log = NHibernateLogger.For(typeof(ExponentialBackoffWithJitterAcquireLockRetryStrategy));
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <param name="attempt"></param>
+        /// <param name="sleep"></param>
         public delegate void BackoffEventHandler(ShouldRetryAcquireLockArgs args, int attempt, int sleep);
 
         public event BackoffEventHandler Backoff;
 
-        private const int sleepBase = 5;
-        private const int sleepMax = 500;
+        private const int SleepBase = 5;
+        private const int SleepMax = 500;
 
         public ShouldRetryAcquireLock GetShouldRetry()
         {
@@ -42,12 +54,12 @@ namespace NHibernate.Caches.Redis
                     // https://github.com/awslabs/aws-arch-backoff-simulator/blob/master/src/backoff_simulator.py
                     // However, the algorithm is modified to use a minimum sleep
                     // instead of "0" to prevent a wasted sleep.
-                    var v = (int)Math.Min(sleepMax, Math.Pow(2, attempt) * sleepBase);
-                    var sleep = random.Next(sleepBase, v);
+                    var v = (int)Math.Min(SleepMax, Math.Pow(2, attempt) * SleepBase);
+                    var sleep = random.Next(SleepBase, v);
 
-                    if (log.IsDebugEnabled)
+                    if (Log.IsDebugEnabled())
                     {
-                        log.DebugFormat("sleep back off for {0}ms", sleep);
+                        Log.Debug("sleep back off for {0}ms", sleep);
                     }
 
                     if (onBackoff != null)

@@ -16,6 +16,9 @@ using System.Windows;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
   public class NhJsonCacheSerializer : ICacheSerializer
   {
     // By default, JSON.NET will always use Int64/Double when deserializing numbers
@@ -27,7 +30,7 @@ namespace NHibernate.Caches.Redis
     {
       // We shouldn't have to account for Nullable<T> because the serializer
       // should see them as null.
-      private static readonly ISet<System.Type> numberTypes = new HashSet<System.Type>(new[]
+      private static readonly ISet<System.Type> NumberTypes = new HashSet<System.Type>(new[]
   {
             typeof(Byte), typeof(SByte),
             typeof(UInt16), typeof(UInt32), typeof(UInt64),
@@ -37,7 +40,7 @@ namespace NHibernate.Caches.Redis
 
       public override bool CanConvert(System.Type objectType)
       {
-        return numberTypes.Contains(objectType);
+        return NumberTypes.Contains(objectType);
       }
 
       // JSON.NET will deserialize a value with the explicit type when 
@@ -143,6 +146,9 @@ namespace NHibernate.Caches.Redis
 
     private readonly JsonSerializerSettings settings;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public NhJsonCacheSerializer()
     {
       this.settings = new JsonSerializerSettings();
@@ -153,7 +159,11 @@ namespace NHibernate.Caches.Redis
       settings.Converters.Add(new KeepNumberTypesConverter());
       settings.ContractResolver = new CustomContractResolver();
     }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
     public RedisValue Serialize(object value)
     {
       if (value == null) return RedisValue.Null;
@@ -161,7 +171,11 @@ namespace NHibernate.Caches.Redis
       var result = JsonConvert.SerializeObject(value, Formatting.None, settings);
       return result;
     }
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="value"></param>
+/// <returns></returns>
     public object Deserialize(RedisValue value)
     {
       if (value.IsNull) return null;

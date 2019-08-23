@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GuidLockValueFactory : ILockValueFactory
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetLockValue()
         {
             return "lock-" + Guid.NewGuid();            

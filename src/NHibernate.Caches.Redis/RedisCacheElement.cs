@@ -7,6 +7,9 @@ using System.ComponentModel;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RedisCacheElement : ConfigurationElement
     {
         [ConfigurationProperty("region", IsRequired = true, IsKey = true)]
@@ -16,6 +19,9 @@ namespace NHibernate.Caches.Redis
             set { base["region"] = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TypeConverter(typeof(TimeSpanSecondsConverter))]
         [ConfigurationProperty("expiration", DefaultValue = "300" /* 5 minutes */, IsRequired = true)]
         public TimeSpan Expiration
@@ -24,11 +30,19 @@ namespace NHibernate.Caches.Redis
             set { base["expiration"] = value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public RedisCacheElement()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="region"></param>
+        /// <param name="expiration"></param>
         public RedisCacheElement(string region, TimeSpan expiration)
         {
             this.Region = region;

@@ -3,16 +3,21 @@ using StackExchange.Redis;
 
 namespace NHibernate.Caches.Redis.Tests
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class RedisTest : IDisposable
     {
-        private const int testDb = 15;
+        private const int TestDb = 15;
         private const string testHost = "localhost";
         private const int testPort = 6379;
         private static readonly string connectionString = testHost + ":" + testPort + ",allowAdmin=true,abortConnect=false,syncTimeout=5000";
 
         protected ConnectionMultiplexer ConnectionMultiplexer { get; private set; }
         protected IDatabase Redis { get; private set; }
-        
+        /// <summary>
+        /// 
+        /// </summary>
         protected RedisTest()
         {
             LoggerProvider.SetLoggersFactory(new OnlyRedisCacheLoggerFactory());
@@ -27,18 +32,18 @@ namespace NHibernate.Caches.Redis.Tests
         {
             return new RedisCacheProviderOptions()
             {
-                Database = testDb
+                Database = TestDb
             };
         }
 
         protected IDatabase GetDatabase()
         {
-            return ConnectionMultiplexer.GetDatabase(testDb);
+            return ConnectionMultiplexer.GetDatabase(TestDb);
         }
 
         protected void FlushDb()
         {
-            ConnectionMultiplexer.GetServer(testHost, testPort).FlushDatabase(testDb);
+            ConnectionMultiplexer.GetServer(testHost, testPort).FlushDatabase(TestDb);
         }
 
         public void Dispose()

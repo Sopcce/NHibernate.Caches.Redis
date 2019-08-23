@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
+﻿using NHibernate.Mapping.ByCode;
+using NHibernate.Mapping.ByCode.Conformist;
 
 namespace NHibernate.Caches.Redis.Tests
 {
-    public class PersonMapping : ClassMap<Person>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class PersonMapping : ClassMapping<Person>
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public PersonMapping()
         {
             Table("Person");
-            Id(x => x.Id);
-            Map(x => x.Age);
-            Map(x => x.Name);
-
-            Cache.ReadWrite();
+            Cache(map => map.Usage(CacheUsage.ReadWrite));
+            Id(x => x.Id, map => map.Generator(Generators.Native));
+            Property(x => x.Age);
+            Property(x => x.Name); 
+           
         }
     }
+    
 }

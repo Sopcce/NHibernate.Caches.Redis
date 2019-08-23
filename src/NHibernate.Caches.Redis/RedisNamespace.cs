@@ -2,30 +2,49 @@ using System;
 using System.Threading;
 namespace NHibernate.Caches.Redis
 {
-    internal class RedisNamespace
+    /// <summary>
+    /// 
+    /// </summary>
+    public class RedisNamespace
     {
         private readonly string prefix;
-        private readonly string setOfActiveKeysKey;
-
+        private readonly string _setOfActiveKeysKey;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="prefix"></param>
         public RedisNamespace(string prefix)
         {
             this.prefix = prefix;
-            this.setOfActiveKeysKey = prefix + ":keys";
+            this._setOfActiveKeysKey = prefix + ":keys";
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetSetOfActiveKeysKey()
         {
-            return setOfActiveKeysKey;
+            return _setOfActiveKeysKey;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public string GetKey(object key)
         {
             return prefix + ":" + key;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public string GetLockKey(object key)
         {
             return GetKey(key) + ":lock";
         }
+
+      
     }
 }

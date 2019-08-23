@@ -1,13 +1,14 @@
 NHibernate.Caches.Redis
 =======================
-#update log 修改日志 一个小菜鸟，有问题处理不了。
-- add Nhibern chacged ICache interface adding async methods Nhibernate.Caches.Redis fails with it.
-- 
+# update 
+ - log 修改日志 一个小菜鸟，有问题处理不了。
+ - add Nhibern chacged ICache interface adding async methods Nhibernate.Caches.Redis fails with it.
+ 
 
-=======================
+  
 
-
-
+ -----
+ 
 
 This is a [Redis](http://redis.io/) based [ICacheProvider](http://www.nhforge.org/doc/nh/en/#configuration-optional-cacheprovider) 
 for [NHibernate](http://nhforge.org/) written in C# using [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis).

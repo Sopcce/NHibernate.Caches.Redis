@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace NHibernate.Caches.Redis.Tests
 {
     public class RedisCacheProviderOptionsTests
     {
-        [Fact]
+        [Test]
         void the_copy_constructor_copies_all_event_handlers()
         {
             var sut = new RedisCacheProviderOptions();
@@ -21,7 +22,7 @@ namespace NHibernate.Caches.Redis.Tests
             var clone = sut.ShallowCloneAndValidate();
             clone.OnException(null, new ExceptionEventArgs("foo", RedisCacheMethod.Unknown, new Exception()));
 
-            Assert.Equal(new[] { "a", "b", "c" }, order);
+            Assert.AreEqual(new[] { "a", "b", "c" }, order);
         }
     }
 }

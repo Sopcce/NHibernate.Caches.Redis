@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
-using System.Text;
 using NHibernate.Cfg;
 
 namespace NHibernate.Cache.DynamicCacheBuster
@@ -13,7 +12,7 @@ namespace NHibernate.Cache.DynamicCacheBuster
     using Tuple = System.Tuple;
     using RootClass = NHibernate.Mapping.RootClass;
     using Collection = NHibernate.Mapping.Collection;
-        
+
     public class CacheBuster
     {
         private readonly List<ChangeEventHandler> onChanges = new List<ChangeEventHandler>();

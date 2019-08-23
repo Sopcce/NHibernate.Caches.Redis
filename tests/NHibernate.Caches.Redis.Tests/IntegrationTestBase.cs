@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
+using System;
+
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
 
 namespace NHibernate.Caches.Redis.Tests
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class IntegrationTestBase : RedisTest
     {
         private const string databaseName = "NHibernateCachesRedisTests";
@@ -22,8 +20,10 @@ namespace NHibernate.Caches.Redis.Tests
         private string logFilePath;
 
         private static Configuration configuration;
-
-        public IntegrationTestBase()
+        /// <summary>
+        /// 
+        /// </summary>
+        protected IntegrationTestBase()
         {
             RedisCacheProvider.InternalSetConnectionMultiplexer(ConnectionMultiplexer);
             RedisCacheProvider.InternalSetOptions(CreateTestProviderOptions());
@@ -39,14 +39,16 @@ namespace NHibernate.Caches.Redis.Tests
 
             if (configuration == null)
             {
-                configuration = Fluently.Configure()
-                    .Database(
-                        MsSqlConfiguration.MsSql2008.ConnectionString(connectionString)
-                    )
-                    .Mappings(m => m.FluentMappings.Add(typeof(PersonMapping)))
-                    .ExposeConfiguration(cfg => cfg.SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, "true"))
-                    .Cache(c => c.UseQueryCache().UseSecondLevelCache().ProviderClass<RedisCacheProvider>())
-                    .BuildConfiguration();
+                //configuration = Fluently.Configure()
+                //    .Database(
+                //        MsSqlConfiguration.MsSql2008.ConnectionString(connectionString)
+                //    )
+                //    .Mappings(m => m.FluentMappings.Add(typeof(PersonMapping)))
+                //    .ExposeConfiguration(cfg => cfg.SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, "true"))
+                //    .Cache(c => c.UseQueryCache().
+                //        UseSecondLevelCache().
+                //        ProviderClass<RedisCacheProvider>())
+                //    .BuildConfiguration();
             }
 
             new SchemaExport(configuration).Create(false, true);

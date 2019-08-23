@@ -4,10 +4,17 @@ using StackExchange.Redis;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class XmlRedisCacheSerializerBase : ICacheSerializer
     {
     
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public RedisValue Serialize(object value)
         {
             var serializer = CreateSerializer();
@@ -20,7 +27,11 @@ namespace NHibernate.Caches.Redis
                 return result;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public object Deserialize(RedisValue value)
         {
             if (value.IsNull) return null;
@@ -35,7 +46,10 @@ namespace NHibernate.Caches.Redis
                 return result;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected abstract XmlObjectSerializer CreateSerializer();
     }
 }

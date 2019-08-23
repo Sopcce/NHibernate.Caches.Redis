@@ -7,13 +7,31 @@ using NHibernate.Util;
 
 namespace NHibernate.Caches.Redis
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RedisCacheConfiguration
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly TimeSpan DefaultExpiration = TimeSpan.FromMinutes(5);
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly TimeSpan DefaultLockTimeout = TimeSpan.FromSeconds(30);
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly TimeSpan DefaultAcquireLockTimeout = DefaultLockTimeout;
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly TimeSpan NoSlidingExpiration = TimeSpan.Zero;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string RegionName { get; set; }
 
         /// <summary>
@@ -77,7 +95,12 @@ namespace NHibernate.Caches.Redis
             LockTimeout = other.LockTimeout;
             AcquireLockTimeout = other.AcquireLockTimeout;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="regionName"></param>
+        /// <param name="properties"></param>
+        /// <returns></returns>
         internal static RedisCacheConfiguration FromPropertiesOrDefaults(string regionName, IDictionary<string, string> properties)
         {
             var expiration = TimeSpan.FromSeconds(
