@@ -7,14 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.Caches.Redis", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.Caches.Redis.Tests", "tests\NHibernate.Caches.Redis.Tests\NHibernate.Caches.Redis.Tests.csproj", "{A067C7D2-CF09-4F24-9848-5CE10DC48438}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65D5F343-E913-4E44-AD77-C338437C9D68}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F5128A75-1A1D-4585-BB4E-A9E55D12D03C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F0732F96-D774-44A7-B51A-54AC1A278F99}"
@@ -25,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.Cache.DynamicCac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcDemo.MySQL", "sample\MvcDemo.MySQL\MvcDemo.MySQL.csproj", "{52C903EC-D26A-4ECF-8E73-35048A700D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Caches.Redis.Tests.NetCore", "tests\NHibernate.Caches.Redis.Tests.NetCore\NHibernate.Caches.Redis.Tests.NetCore.csproj", "{7197A6F5-1C45-4230-AD5F-0D478153E6B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.Caches.Redis.Tests.NetCore", "tests\NHibernate.Caches.Redis.Tests.NetCore\NHibernate.Caches.Redis.Tests.NetCore.csproj", "{7197A6F5-1C45-4230-AD5F-0D478153E6B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

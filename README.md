@@ -1,7 +1,9 @@
 NHibernate.Caches.Redis
 =======================
-# update 
- - log 修改日志 一个小菜鸟，有问题处理不了。
+## update 
+
+###
+ - add dotnet core 2.0
  - add Nhibern chacged ICache interface adding async methods Nhibernate.Caches.Redis fails with it.
  
 
@@ -13,14 +15,14 @@ NHibernate.Caches.Redis
 This is a [Redis](http://redis.io/) based [ICacheProvider](http://www.nhforge.org/doc/nh/en/#configuration-optional-cacheprovider) 
 for [NHibernate](http://nhforge.org/) written in C# using [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis).
 
-Installation
+## Installation
 ------------
 
 1. You can install using NuGet: `PM> Install-Package NHibernate.Caches.Redis`
 2. Or build/install from source: `msbuild .\build\build.proj` and then look
    inside the `bin` directory.
 
-Usage
+## Usage
 -----
 
 Configure NHibernate to use the custom cache provider:
@@ -50,8 +52,8 @@ connectionMultiplexer.Dispose();
 ```
 
 Check out the `NHibernate.Caches.Redis.Sample` project to learn more.
-
-Options
+ 
+## Options
 -------
 
 You can customize certain behavior with the `RedisCacheProvider.SetOptions(options)`
